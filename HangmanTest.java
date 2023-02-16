@@ -23,8 +23,13 @@ public class HangmanTest {
      * Difficulty selection
     */
     HangmanSettingsSelect settings = new HangmanSettingsSelect();
+    settings.setDifficulty();
+    settings.setWordLength();
     int difficulty = settings.getDifficulty();
+    int wordLength = settings.getWordlength();
+    System.out.println("Word Length: " + wordLength);
 
+    // int difficulty = 0;
     // return if difficulty is 0
     if (difficulty == 0) {
       scan.close();
