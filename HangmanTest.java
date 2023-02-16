@@ -16,50 +16,29 @@ public class HangmanTest {
     String[] words = {"ash", "cycle", "exhibition", "exploration", "fraction", "mechanism", "player", "swing", "tank", "year"};
     ArrayList<String> guesses = new ArrayList<String>();
     Boolean game_loop = true;
-    int difficulty = 0;
     int strikes = 1;
     int correct = 0;
 
     /*
      * Difficulty selection
     */
-    if (true) {
-      while (difficulty == 0) {
-        try {
-          System.out.print("Enter Game Difficulty (Easy (e), Medium (m), Hard (h), Exit (x)): ");
-          String selection = scan.nextLine();
+    HangmanSettingsSelect settings = new HangmanSettingsSelect();
+    int difficulty = settings.getDifficulty();
 
-          if (selection.charAt(0) == 'e') {
-            difficulty = 1;
-          } else if (selection.charAt(0) == 'm') {
-            difficulty = 2;
-          } else if (selection.charAt(0) == 'h') {
-            difficulty = 3;
-          } else if (selection.charAt(0) == 'x') {
-            break;
-          } else {
-            System.out.println("Invaid Input, Please Try Again");
-          }
-
-        } catch (Exception e) {
-          System.out.println("Invalid Input, Please Try Again");
-        }
-      }
-      // return if difficulty is 0
-      if (difficulty == 0) {
-        scan.close();
-        return;
-      // Calcultes number of strikes
-      } else if (difficulty == 1) {
-        strikes = 10;
-      } else if (difficulty == 2) {
-        strikes = 5;
-      } else if (difficulty == 3) {
-        strikes = 3;
-      }
-
-      System.out.println(difficulty);
+    // return if difficulty is 0
+    if (difficulty == 0) {
+      scan.close();
+      return;
+    // Calcultes number of strikes
+    } else if (difficulty == 1) {
+      strikes = 10;
+    } else if (difficulty == 2) {
+      strikes = 5;
+    } else if (difficulty == 3) {
+      strikes = 3;
     }
+
+    System.out.println("Difficulty: " + difficulty);
 
     /*
      * End Difficulty Selection
