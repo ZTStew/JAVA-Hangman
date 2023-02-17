@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.RandomAccessFile;
 
 public class HangmanTest {
   public static void main(String[] args) {
@@ -19,13 +20,22 @@ public class HangmanTest {
     int strikes = 1;
     int correct = 0;
 
+    
     /*
-     * Difficulty selection
+    * Difficulty selection
     */
     HangmanSettingsSelect settings = new HangmanSettingsSelect();
     settings.setDifficulty();
     settings.setWordLength();
     System.out.println("Word Length: " + settings.getWordLength());
+    try {
+      RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + settings.getWordLength() + "_words.txt", "r");
+      System.out.println(file.length());
+      System.out.println("here");
+    } catch (Exception e) {
+      System.out.println("there");
+      
+    }
 
     if (settings.getDifficulty() == 0) {
       scan.close();

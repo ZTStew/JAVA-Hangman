@@ -1,10 +1,11 @@
 /*
- * Class to prompt user to select game settings including difficulty
- */
+* Class to prompt user to select game settings including difficulty
+*/
 
 import java.util.Scanner;
 
 public class HangmanSettingsSelect {
+  HangmanWordGeneration wordGen = new HangmanWordGeneration();
   int difficulty;
   int wordLength;
   int strikes;
@@ -73,6 +74,9 @@ public class HangmanSettingsSelect {
       }
     }
     // return this.wordLength;
+
+    // this.wordGen.setWord(this.wordLength);
+
   }
 
   /* Strikes */

@@ -1,9 +1,10 @@
 /*
  * Class handles selecting word that will be guessed
  */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+
+// import java.io.File;
+import java.io.RandomAccessFile;
+// import java.util.Scanner;
 
 public class HangmanWordGeneration {
   String word;
@@ -14,21 +15,25 @@ public class HangmanWordGeneration {
 
   }
 
-  public String setWord(String wordLength) {
+  public void setWord(String wordLength) {
     try {
-      File file = new File("len_" + wordLength + "_words.txt");
-      Scanner scan = new Scanner(file);
+      RandomAccessFile file = new RandomAccessFile("len_" + wordLength + "_words.txt", "r");
+      System.out.println(file.length());
 
-      while (scan.hasNextLine()) {
-        String data = scan.nextLine();
+      // File file = new File("len_" + wordLength + "_words.txt");
+      // Scanner scan = new Scanner(file);
 
-        System.out.println(data);
-      }
-      scan.close();
-    } catch (FileNotFoundException e) {
+      // while (scan.hasNextLine()) {
+      //   String data = scan.nextLine();
+
+      //   System.out.println(data);
+      // }
+      // scan.close();
+      file.close();
+    } catch (Exception e) {
       System.out.println("ERROR: " + e);
     }
     
-    return "";
+    // return "";
   }
 }
