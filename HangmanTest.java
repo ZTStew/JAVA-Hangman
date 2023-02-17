@@ -25,25 +25,17 @@ public class HangmanTest {
     HangmanSettingsSelect settings = new HangmanSettingsSelect();
     settings.setDifficulty();
     settings.setWordLength();
-    int difficulty = settings.getDifficulty();
-    int wordLength = settings.getWordlength();
-    System.out.println("Word Length: " + wordLength);
+    System.out.println("Word Length: " + settings.getWordLength());
 
-    // int difficulty = 0;
-    // return if difficulty is 0
-    if (difficulty == 0) {
+    if (settings.getDifficulty() == 0) {
       scan.close();
       return;
     // Calcultes number of strikes
-    } else if (difficulty == 1) {
-      strikes = 10;
-    } else if (difficulty == 2) {
-      strikes = 5;
-    } else if (difficulty == 3) {
-      strikes = 3;
+    } else {
+      strikes = settings.getStrikes();
     }
 
-    System.out.println("Difficulty: " + difficulty);
+    System.out.println("Difficulty: " + settings.getDifficulty());
 
     /*
      * End Difficulty Selection

@@ -7,13 +7,18 @@ import java.util.Scanner;
 public class HangmanSettingsSelect {
   int difficulty;
   int wordLength;
+  int strikes;
+
   Scanner scan = new Scanner(System.in);
 
+  /* Constructor */
   public HangmanSettingsSelect() {
     this.difficulty = 0;
     this.wordLength = 0;
+    this.strikes = 0;
   }
 
+  /* Difficulty */
   public int getDifficulty () {
     return this.difficulty;
   }
@@ -40,10 +45,12 @@ public class HangmanSettingsSelect {
         System.out.println("Invalid Input, Please Try Again");
       }
     }
+    this.setStrikes();
     // return this.difficulty;
   }
 
-  public int getWordlength() {
+  /* Word Length */
+  public int getWordLength() {
     return this.wordLength;
   }
 
@@ -66,5 +73,20 @@ public class HangmanSettingsSelect {
       }
     }
     // return this.wordLength;
+  }
+
+  /* Strikes */
+  public int getStrikes() {
+    return this.strikes;
+  }
+
+  private void setStrikes() {
+    if (this.getDifficulty() == 1) {
+      this.strikes = 10;
+    } else if (this.getDifficulty() == 2) {
+      this.strikes = 5;
+    } else if (this.getDifficulty() == 3) {
+      this.strikes = 3;
+    }
   }
 }
