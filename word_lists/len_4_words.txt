@@ -328,7 +328,6 @@ bush
 buss
 bust
 busy
-butt
 buzz
 byre
 byte
@@ -380,7 +379,6 @@ celt
 cent
 cero
 cert
-cess
 cest
 ceux
 chad
@@ -439,7 +437,6 @@ coho
 coif
 coil
 coin
-coir
 coke
 cola
 cold
@@ -499,7 +496,6 @@ cuff
 cull
 culm
 cult
-cunt
 cuon
 cups
 cura
@@ -512,9 +508,6 @@ cusk
 cusp
 cuss
 cute
-cuum
-cyma
-cyme
 cyst
 czar
 daba
@@ -528,7 +521,6 @@ dais
 dale
 dama
 dame
-damn
 damp
 dane
 dank
@@ -538,7 +530,6 @@ dard
 dare
 dari
 dark
-darn
 dart
 dash
 data
@@ -883,7 +874,6 @@ frey
 frog
 from
 frow
-fuck
 fuel
 fuge
 fugu
@@ -2323,7 +2313,6 @@ shed
 shim
 shin
 ship
-shit
 shiv
 shod
 shoe

@@ -19,8 +19,9 @@ public class HangmanTest {
     Boolean game_loop = true;
     int strikes = 1;
     int correct = 0;
+    String word = "";
 
-    
+
     /*
     * Difficulty selection
     */
@@ -30,11 +31,19 @@ public class HangmanTest {
     System.out.println("Word Length: " + settings.getWordLength());
     try {
       RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + settings.getWordLength() + "_words.txt", "r");
-      System.out.println(file.length());
-      System.out.println("here");
+      long rand = (long)Math.floor(random.nextLong(file.length()) / (settings.getWordLength() + 2)) * (settings.getWordLength() + 2);
+      System.out.println(rand);
+      file.seek(rand);
+
+      word = file.readLine();
+
+      // System.out.println(file.readLine());
+      file.close();
+
+      System.out.println(" ---- here ---- ");
     } catch (Exception e) {
       System.out.println("there");
-      
+
     }
 
     if (settings.getDifficulty() == 0) {
@@ -52,7 +61,7 @@ public class HangmanTest {
      */
 
     // generates word that will be guessed
-    String word = words[random.nextInt(10)];
+    // String word = words[random.nextInt(10)];
     System.out.println(word);
 
 

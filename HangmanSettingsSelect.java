@@ -5,12 +5,12 @@
 import java.util.Scanner;
 
 public class HangmanSettingsSelect {
-  HangmanWordGeneration wordGen = new HangmanWordGeneration();
   int difficulty;
   int wordLength;
   int strikes;
 
   Scanner scan = new Scanner(System.in);
+  HangmanWordGeneration wordGen = new HangmanWordGeneration();
 
   /* Constructor */
   public HangmanSettingsSelect() {
