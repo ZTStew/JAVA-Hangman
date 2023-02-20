@@ -5585,7 +5585,6 @@ oxidase
 oxonian
 oxyacid
 ozonium
-pa'anga
 pabulum
 pachisi
 pachuco
@@ -5981,7 +5980,6 @@ platter
 plaudit
 plautus
 playbox
-playboy
 playful
 playing
 playlet
@@ -7082,7 +7080,6 @@ several
 severed
 seville
 seymour
-sha'ban
 shackle
 shading
 shadows

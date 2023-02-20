@@ -1,25 +1,25 @@
 /*
- * Author: Zachary Stewart
- * Date: 02/14/2023
+* Author: Zachary Stewart
+* Date: 02/14/2023
 */
 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.RandomAccessFile;
 
 public class HangmanTest {
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
     Random random = new Random();
 
-    String[] words = {"ash", "cycle", "exhibition", "exploration", "fraction", "mechanism", "player", "swing", "tank", "year"};
     ArrayList<String> guesses = new ArrayList<String>();
     Boolean game_loop = true;
     int strikes = 1;
     int correct = 0;
-    String word = "";
+    boolean playAgain = false;
+    HangmanGameFunctions gameFunction = new HangmanGameFunctions();
+
 
 
     /*
@@ -28,23 +28,7 @@ public class HangmanTest {
     HangmanSettingsSelect settings = new HangmanSettingsSelect();
     settings.setDifficulty();
     settings.setWordLength();
-    System.out.println("Word Length: " + settings.getWordLength());
-    try {
-      RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + settings.getWordLength() + "_words.txt", "r");
-      long rand = (long)Math.floor(random.nextLong(file.length()) / (settings.getWordLength() + 2)) * (settings.getWordLength() + 2);
-      System.out.println(rand);
-      file.seek(rand);
-
-      word = file.readLine();
-
-      // System.out.println(file.readLine());
-      file.close();
-
-      System.out.println(" ---- here ---- ");
-    } catch (Exception e) {
-      System.out.println("there");
-
-    }
+    settings.setWord();
 
     if (settings.getDifficulty() == 0) {
       scan.close();
@@ -52,6 +36,7 @@ public class HangmanTest {
     // Calcultes number of strikes
     } else {
       strikes = settings.getStrikes();
+      // gameFunction.setStrikes(strikes);
     }
 
     System.out.println("Difficulty: " + settings.getDifficulty());
@@ -62,12 +47,21 @@ public class HangmanTest {
 
     // generates word that will be guessed
     // String word = words[random.nextInt(10)];
-    System.out.println(word);
+    System.out.println(settings.getWord());
 
 
     while (game_loop) {
-      if (correct >= word.length()) {
-        System.out.println("Game Over! Word, " + word.toUpperCase() + ", Correctly Guessed!");
+      if (correct >= settings.getWord().length()) {
+        System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Correctly Guessed!");
+
+        /* Will prompt player if they want to play again */
+        // System.out.print("Play Again? (y/n)");
+        // String replay = scan.nextLine();
+        // if (replay.charAt(0) == 'y') {
+        //   playAgain = true;
+        // }
+
+
         game_loop = false;
 
       // Kills game after number of strikes equals 0
@@ -75,36 +69,16 @@ public class HangmanTest {
         /*
         * Build encoded word
         */
+        gameFunction.setEncodedWord(settings.getWord(), guesses);
 
-        String encoded = "";
-
-        for (int i = 0; i < word.length(); i++) {
-          if(guesses.contains(Character.toString(word.charAt(i)))) {
-            if (i == 0) {
-              encoded += word.charAt(i) + " ";
-            } else if (i == word.length() - 1) {
-              encoded += " " + word.charAt(i);
-            } else {
-              encoded += " " + word.charAt(i) + " ";
-            }
-          } else {
-            if (i == 0) {
-              encoded += "_ ";
-            } else if (i == word.length() - 1) {
-              encoded += " _";
-            } else {
-              encoded += " _ ";
-            }
-          }
-        }
-
-        System.out.println("Word: " + encoded);
+        System.out.println("Word: " + gameFunction.getEncodedWord());
         System.out.println("Strikes Remaining: " + strikes);
 
         try {
           // Gets user input
           System.out.print("Enter Guess (1 Letter): ");
           String selection = scan.nextLine();
+          selection = selection.toLowerCase();
 
           // Sets user guess to the first letter entered
           String guess = String.valueOf(selection.charAt(0));
@@ -119,8 +93,8 @@ public class HangmanTest {
             Collections.sort(guesses);
 
             boolean does_contain = false;
-            for (int i = 0; i < word.length(); i++) {
-              if (word.charAt(i) == guess.charAt(0)) {
+            for (int i = 0; i < settings.getWord().length(); i++) {
+              if (settings.getWord().charAt(i) == guess.charAt(0)) {
                 does_contain = true;
                 correct++;
               }
@@ -167,12 +141,11 @@ public class HangmanTest {
           System.out.println("Invalid Input");
         }
       } else {
-        System.out.println("Game Over! Word, " + word.toUpperCase() + ", Was Not Guessed!");
+        System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Was Not Guessed!");
 
         game_loop = false;
       }
     }
-
 
     scan.close();
   }

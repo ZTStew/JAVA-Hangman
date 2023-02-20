@@ -580,7 +580,6 @@ dhow
 dial
 dibs
 dice
-dick
 dido
 diem
 dies
@@ -1327,7 +1326,6 @@ kina
 kind
 kine
 king
-kink
 kino
 kirk
 kiss

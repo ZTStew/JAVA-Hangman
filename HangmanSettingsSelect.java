@@ -1,23 +1,28 @@
 /*
-* Class to prompt user to select game settings including difficulty
+* Class to prompt user to select game settings including difficulty, word length, word, strikes
 */
 
+import java.io.RandomAccessFile;
+import java.util.Random;
 import java.util.Scanner;
 
 public class HangmanSettingsSelect {
   int difficulty;
   int wordLength;
+  String word;
   int strikes;
 
+  Random random = new Random();
   Scanner scan = new Scanner(System.in);
-  HangmanWordGeneration wordGen = new HangmanWordGeneration();
 
   /* Constructor */
   public HangmanSettingsSelect() {
     this.difficulty = 0;
     this.wordLength = 0;
     this.strikes = 0;
+    this.word = "";
   }
+
 
   /* Difficulty */
   public int getDifficulty () {
@@ -29,6 +34,7 @@ public class HangmanSettingsSelect {
       try {
         System.out.print("Enter Game Difficulty (Easy (e), Medium (m), Hard (h), Exit (x)): ");
         String selection = scan.nextLine();
+        selection = selection.toLowerCase();
 
         if (selection.charAt(0) == 'e') {
           this.difficulty = 1;
@@ -47,8 +53,8 @@ public class HangmanSettingsSelect {
       }
     }
     this.setStrikes();
-    // return this.difficulty;
   }
+
 
   /* Word Length */
   public int getWordLength() {
@@ -73,11 +79,33 @@ public class HangmanSettingsSelect {
         scan.next();
       }
     }
-    // return this.wordLength;
-
-    // this.wordGen.setWord(this.wordLength);
-
   }
+
+
+  /* Selects the word being guessed */
+  public String getWord() {
+    return word;
+  }
+
+  public void setWord() {
+    try {
+      // opens file
+      RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + this.wordLength + "_words.txt", "r");
+      // Selects a random line from file
+      // Each line is the word length + 2 as there are 2 values at the end of each line (I think for escape characters)
+      long rand = (long)Math.floor(random.nextLong(file.length()) / (this.wordLength + 2)) * (this.wordLength + 2);
+      // sets line to position or rand
+      file.seek(rand);
+
+      // reads line starting at 'seek'
+      word = file.readLine();
+
+      file.close();
+    } catch (Exception e) {
+      System.out.println("ERROR: " + e);
+    }
+  }
+
 
   /* Strikes */
   public int getStrikes() {
