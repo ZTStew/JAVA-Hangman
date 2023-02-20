@@ -3,22 +3,18 @@
 * Date: 02/14/2023
 */
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class HangmanTest {
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
-    Random random = new Random();
 
     ArrayList<String> guesses = new ArrayList<String>();
     Boolean game_loop = true;
-    int strikes = 1;
+    // int strikes = 1;
     int correct = 0;
     boolean playAgain = false;
-    HangmanGameFunctions gameFunction = new HangmanGameFunctions();
 
 
 
@@ -26,6 +22,7 @@ public class HangmanTest {
     * Difficulty selection
     */
     HangmanSettingsSelect settings = new HangmanSettingsSelect();
+    HangmanGameFunctions gameFunction = new HangmanGameFunctions(settings);
     settings.setDifficulty();
     settings.setWordLength();
     settings.setWord();
@@ -33,13 +30,8 @@ public class HangmanTest {
     if (settings.getDifficulty() == 0) {
       scan.close();
       return;
-    // Calcultes number of strikes
-    } else {
-      strikes = settings.getStrikes();
-      // gameFunction.setStrikes(strikes);
     }
 
-    System.out.println("Difficulty: " + settings.getDifficulty());
 
     /*
      * End Difficulty Selection
@@ -47,7 +39,7 @@ public class HangmanTest {
 
     // generates word that will be guessed
     // String word = words[random.nextInt(10)];
-    System.out.println(settings.getWord());
+    System.out.println("Word To Guess: " + settings.getWord());
 
 
     while (game_loop) {
@@ -65,81 +57,15 @@ public class HangmanTest {
         game_loop = false;
 
       // Kills game after number of strikes equals 0
-      } else if (strikes > 0) {
-        /*
-        * Build encoded word
-        */
+      } else if (settings.getStrikes() > 0) {
+        // Sets up encoded word
         gameFunction.setEncodedWord(settings.getWord(), guesses);
 
         System.out.println("Word: " + gameFunction.getEncodedWord());
-        System.out.println("Strikes Remaining: " + strikes);
+        System.out.println("Strikes Remaining: " + settings.getStrikes());
 
-        try {
-          // Gets user input
-          System.out.print("Enter Guess (1 Letter): ");
-          String selection = scan.nextLine();
-          selection = selection.toLowerCase();
+        correct = gameFunction.getUserGuess(settings.getWord(), guesses, correct);
 
-          // Sets user guess to the first letter entered
-          String guess = String.valueOf(selection.charAt(0));
-          // System.out.println(guess);
-
-          // Checks if letter has already been guessed
-          if (guesses.contains(guess)) {
-            System.out.println("Letter Already Guessed");
-          // Checks if the guess letter is found in the word
-          } else {
-            guesses.add(guess);
-            Collections.sort(guesses);
-
-            boolean does_contain = false;
-            for (int i = 0; i < settings.getWord().length(); i++) {
-              if (settings.getWord().charAt(i) == guess.charAt(0)) {
-                does_contain = true;
-                correct++;
-              }
-            }
-
-            if (does_contain) {
-              System.out.println("Guess Correct");
-            } else {
-              System.out.println("Guess Wrong");
-              // reduces the number of strikes left
-              strikes--;
-            }
-          }
-
-          /*
-           * Colors output for ease of use
-           */
-
-          // System.out.print("Current Gueses: [");
-          String guessSummary = "Current Gueses: [";
-
-          for (int i = 0; i < guesses.size(); i++) {
-            if (guesses.get(i).equals("a") ||
-                guesses.get(i).equals("e") ||
-                guesses.get(i).equals("i") ||
-                guesses.get(i).equals("o") ||
-                guesses.get(i).equals("u")) {
-              guessSummary += "\u001B[35m " + guesses.get(i) + "\u001B[0m";
-            } else {
-              guessSummary += "\u001B[36m " + guesses.get(i) + "\u001B[0m";
-            }
-            if (i == guesses.size() - 1) {
-              guessSummary += " ";
-            } else {
-              guessSummary += ", ";
-            }
-          }
-          guessSummary += "]";
-
-          System.out.println(guessSummary);
-
-          // System.out.println("Current Guesses: " + guesses);
-        } catch (Exception e) {
-          System.out.println("Invalid Input");
-        }
       } else {
         System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Was Not Guessed!");
 

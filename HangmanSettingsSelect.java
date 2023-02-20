@@ -52,7 +52,7 @@ public class HangmanSettingsSelect {
         System.out.println("Invalid Input, Please Try Again");
       }
     }
-    this.setStrikes();
+    this.setGameStrikes();
   }
 
 
@@ -112,7 +112,11 @@ public class HangmanSettingsSelect {
     return this.strikes;
   }
 
-  private void setStrikes() {
+  public void updateStrikes() {
+    this.strikes--;
+  }
+
+  private void setGameStrikes() {
     if (this.getDifficulty() == 1) {
       this.strikes = 10;
     } else if (this.getDifficulty() == 2) {
