@@ -73,7 +73,6 @@ public class HangmanGameFunctions {
   /* Get user guess */
   public int getUserGuess(String word, ArrayList<String> guesses, int correct) {
     try {
-      System.out.println("Correct: " + correct);
       // Gets user input
       System.out.print("Enter Guess (1 Letter): ");
       String selection = scan.nextLine();
@@ -128,9 +127,9 @@ public class HangmanGameFunctions {
           guesses.get(i).equals("i") ||
           guesses.get(i).equals("o") ||
           guesses.get(i).equals("u")) {
-        guessSummary += "\u001B[35m " + guesses.get(i) + "\u001B[0m";
+        guessSummary += TextColor.Purple + " " + guesses.get(i) + TextColor.Reset;
       } else {
-        guessSummary += "\u001B[36m " + guesses.get(i) + "\u001B[0m";
+        guessSummary += TextColor.Cyan + " " + guesses.get(i) + TextColor.Reset;
       }
       if (i == guesses.size() - 1) {
         guessSummary += " ";

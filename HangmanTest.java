@@ -55,10 +55,12 @@ public class HangmanTest {
           // Sets up encoded word
           gameFunction.setEncodedWord(settings.getWord(), guesses);
 
+
           System.out.println("Word: " + gameFunction.getEncodedWord());
-          System.out.println("Strikes Remaining: " + settings.getStrikes());
+          // System.out.println("Strikes Remaining: " + settings.getStrikes());
 
           correct = gameFunction.getUserGuess(settings.getWord(), guesses, correct);
+          settings.readStatus(correct);
 
         } else {
           System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Was Not Guessed!");

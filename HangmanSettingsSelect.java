@@ -69,13 +69,13 @@ public class HangmanSettingsSelect {
         // System.out.println(selection);
 
         if (selection < 3 || selection > 10) {
-          System.out.println("\u001B[31mInvalid Input: Please Enter A Number Between 3 and 10\u001B[0m");
+          System.out.println(TextColor.Red + "Invalid Input: Please Enter A Number Between 3 and 10" + TextColor.Reset);
         } else {
           this.wordLength = selection;
         }
 
       } catch (Exception e) {
-        System.out.println("\u001B[31mInvalid Input, Please Try Again\u001B[0m");
+        System.out.println(TextColor.Red + "Invalid Input, Please Try Again" + TextColor.Reset);
         scan.next();
       }
     }
@@ -124,5 +124,12 @@ public class HangmanSettingsSelect {
     } else if (this.getDifficulty() == 3) {
       this.strikes = 3;
     }
+  }
+
+  /* Method prints out the word being guessed, the strikes remaining, the number of correct guesses */
+  public void readStatus(int correct) {
+    System.out.println("Word To Guess: " + TextColor.Purple + this.word + TextColor.Reset);
+    System.out.println("Strikes Remaining: " + this.strikes + TextColor.Reset);
+    System.out.println("Letters Correct: " + correct + TextColor.Reset);
   }
 }
