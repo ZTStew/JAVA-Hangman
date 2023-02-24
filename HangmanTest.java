@@ -32,7 +32,7 @@ public class HangmanTest {
         return;
       }
 
-      System.out.println("Word To Guess: " + settings.getWord());
+      System.out.println("Word To Guess: " + TextColor.Purple + settings.getWord() + TextColor.Reset);
 
       playAgain = false;
       gameLoop = true;
@@ -42,10 +42,13 @@ public class HangmanTest {
           System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Correctly Guessed!");
 
           /* Will prompt player if they want to play again */
-          System.out.print("Would You Like To Play Again? (y/n)");
+          System.out.print("Would You Like To Play Again? (y/n) ");
           String replay = scan.nextLine();
           if (replay.charAt(0) == 'y') {
             playAgain = true;
+
+            // reset strikes
+            // reset words
           }
 
           gameLoop = false;

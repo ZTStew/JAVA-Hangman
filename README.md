@@ -20,5 +20,5 @@ Description:
 
 TODO:
  * Need to brake program into method files
- * Break random word collecitons into length-based groups
+ * reset words, strikes
  * Need to add JavaFX to file

@@ -52,6 +52,7 @@ public class HangmanSettingsSelect {
         System.out.println("Invalid Input, Please Try Again");
       }
     }
+    System.out.println("Strikes reset");
     this.setGameStrikes();
   }
 
@@ -92,8 +93,8 @@ public class HangmanSettingsSelect {
       // opens file
       RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + this.wordLength + "_words.txt", "r");
       // Selects a random line from file
-      // Each line is the word length + 2 as there are 2 values at the end of each line (I think for escape characters)
-      long rand = (long)Math.floor(random.nextLong(file.length()) / (this.wordLength + 2)) * (this.wordLength + 2);
+      // Each line is the word length + 1 to accoutn for each line's escape characters
+      long rand = (long)Math.floor(Math.floor(Math.random() * (file.length() - 1)) / (this.wordLength + 1)) * (this.wordLength + 1);
       // sets line to position or rand
       file.seek(rand);
 
