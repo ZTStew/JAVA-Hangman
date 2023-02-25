@@ -20,5 +20,5 @@ Description:
 
 TODO:
  * Need to brake program into method files
- * reset words, strikes
+ * reset words, correct
  * Need to add JavaFX to file

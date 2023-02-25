@@ -52,7 +52,6 @@ public class HangmanSettingsSelect {
         System.out.println("Invalid Input, Please Try Again");
       }
     }
-    System.out.println("Strikes reset");
     this.setGameStrikes();
   }
 
@@ -93,8 +92,20 @@ public class HangmanSettingsSelect {
       // opens file
       RandomAccessFile file = new RandomAccessFile("./word_lists/len_" + this.wordLength + "_words.txt", "r");
       // Selects a random line from file
-      // Each line is the word length + 1 to accoutn for each line's escape characters
-      long rand = (long)Math.floor(Math.floor(Math.random() * (file.length() - 1)) / (this.wordLength + 1)) * (this.wordLength + 1);
+      // Each line is the word length +1 or +2 to account for each line's escape characters
+      // Due to how each OS records line end codes, windows needs to be adjusted by +2 and Linux needs to be adjuested by +1
+      // Identifies OS to handel different end line variables
+      String os = System.getProperty("os.name").toLowerCase();
+      long rand = 0;
+      if (os.contains("windows")) {
+        /* Windows */
+        rand = (long)Math.floor(Math.floor(Math.random() * (file.length() - 2)) / (this.wordLength + 2)) * (this.wordLength + 2);
+        System.out.println("OS = Windows");
+      } else {
+        /* Linux */
+        rand = (long)Math.floor(Math.floor(Math.random() * (file.length() - 1)) / (this.wordLength + 1)) * (this.wordLength + 1);
+        System.out.println("OS != Windows");
+      }
       // sets line to position or rand
       file.seek(rand);
 
