@@ -47,8 +47,10 @@ public class HangmanTest {
           if (replay.charAt(0) == 'y') {
             playAgain = true;
 
-            // reset strikes
-            // reset words
+            // reset correct
+            correct = 0;
+            // reset guesses
+            guesses = new ArrayList<String>();
           }
 
           gameLoop = false;

@@ -73,13 +73,24 @@ public class HangmanGameFunctions {
   /* Get user guess */
   public int getUserGuess(String word, ArrayList<String> guesses, int correct) {
     try {
-      // Gets user input
-      System.out.print("Enter Guess (1 Letter): ");
-      String selection = scan.nextLine();
-      selection = selection.toLowerCase();
+      String guess = "";
+      while (true) {
+        // Gets user input
+        System.out.print("Enter Guess (1 Letter): " + TextColor.Green);
+        String selection = scan.nextLine();
+        // standardizes user input
+        selection = selection.toLowerCase();
+        System.out.print(TextColor.Reset);
 
-      // Sets user guess to the first letter entered
-      String guess = String.valueOf(selection.charAt(0));
+        // checks if user input is between a-z
+        if (selection.charAt(0) >= 'a' && selection.charAt(0) <= 'z') {
+          // Sets user guess to the first letter entered
+          guess = String.valueOf(selection.charAt(0));
+          break;
+        } else {
+          System.out.println(TextColor.Red + "Guess Needs To Be Between: a-z" + TextColor.Reset);
+        }
+      }
       // System.out.println(guess);
 
       // Checks if letter has already been guessed
