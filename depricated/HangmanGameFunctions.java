@@ -91,7 +91,6 @@ public class HangmanGameFunctions {
           System.out.println(TextColor.Red + "Guess Needs To Be Between: a-z" + TextColor.Reset);
         }
       }
-      // System.out.println(guess);
 
       // Checks if letter has already been guessed
       if (guesses.contains(guess)) {

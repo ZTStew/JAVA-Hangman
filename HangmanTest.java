@@ -22,7 +22,6 @@ public class HangmanTest {
        * Difficulty selection
        */
       HangmanSettingsSelect settings = new HangmanSettingsSelect();
-      HangmanGameFunctions gameFunction = new HangmanGameFunctions(settings);
       settings.setDifficulty();
       settings.setWordLength();
       settings.setWord();
@@ -32,7 +31,7 @@ public class HangmanTest {
         return;
       }
 
-      System.out.println("Word To Guess: " + TextColor.Purple + settings.getWord() + TextColor.Reset);
+      // System.out.println("Word To Guess: " + TextColor.Purple + settings.getWord() + TextColor.Reset);
 
       playAgain = false;
       gameLoop = true;
@@ -58,19 +57,20 @@ public class HangmanTest {
         // Kills game after number of strikes equals 0
         } else if (settings.getStrikes() > 0) {
           // Sets up encoded word
-          gameFunction.setEncodedWord(settings.getWord(), guesses);
+          settings.setEncodedWord(guesses);
 
 
-          System.out.println("Word: " + gameFunction.getEncodedWord());
+          System.out.println("Word: " + settings.getEncodedWord());
+          // System.out.print("");
           // System.out.println("Strikes Remaining: " + settings.getStrikes());
 
-          correct = gameFunction.getUserGuess(settings.getWord(), guesses, correct);
+          correct = settings.getUserGuess(guesses, correct);
           settings.readStatus(correct);
 
         } else {
           System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Was Not Guessed!");
 
-          System.out.print("Would You Like To Play Again? (y/n)");
+          System.out.print("Would You Like To Play Again? (y/n) ");
           String replay = scan.nextLine();
           if (replay.charAt(0) == 'y') {
             playAgain = true;

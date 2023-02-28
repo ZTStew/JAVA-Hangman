@@ -20,5 +20,4 @@ Description:
 
 TODO:
  * Need to brake program into method files
- * Handel non a-z user inputs
  * Need to add JavaFX to file
