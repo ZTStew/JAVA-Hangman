@@ -26,11 +26,6 @@ public class HangmanTest {
       settings.setWordLength();
       settings.setWord();
 
-      if (settings.getDifficulty() == 0) {
-        scan.close();
-        return;
-      }
-
       // System.out.println("Word To Guess: " + TextColor.Purple + settings.getWord() + TextColor.Reset);
 
       playAgain = false;
@@ -74,6 +69,11 @@ public class HangmanTest {
           String replay = scan.nextLine();
           if (replay.charAt(0) == 'y') {
             playAgain = true;
+
+            // reset correct
+            correct = 0;
+            // reset guesses
+            guesses = new ArrayList<String>();
           }
 
           gameLoop = false;
