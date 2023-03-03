@@ -19,6 +19,5 @@ Description:
   - Hard - 7 strikes
 
 TODO:
- * Variables not being properly reset
  * Need to brake program into method files
  * Need to add JavaFX to file

@@ -35,12 +35,9 @@ public class HangmanTest {
         if (correct >= settings.getWord().length()) {
           System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Correctly Guessed!");
 
-          /* Will prompt player if they want to play again */
-          System.out.print("Would You Like To Play Again? (y/n) ");
-          String replay = scan.nextLine();
-          if (replay.charAt(0) == 'y') {
-            playAgain = true;
+          playAgain = settings.isPlayAgain();
 
+          if (playAgain) {
             // reset correct
             correct = 0;
             // reset guesses
@@ -65,11 +62,9 @@ public class HangmanTest {
         } else {
           System.out.println("Game Over! Word, " + settings.getWord().toUpperCase() + ", Was Not Guessed!");
 
-          System.out.print("Would You Like To Play Again? (y/n) ");
-          String replay = scan.nextLine();
-          if (replay.charAt(0) == 'y') {
-            playAgain = true;
+          playAgain = settings.isPlayAgain();
 
+          if (playAgain) {
             // reset correct
             correct = 0;
             // reset guesses

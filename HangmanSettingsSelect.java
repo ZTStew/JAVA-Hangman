@@ -145,20 +145,32 @@ public class HangmanSettingsSelect {
 
   /*
    * Contains checks to determine if the game is in 1 of 3 states:
-   * Game still going
-   * Game won
-   * Game lost
+   * Game still going 3
+   * Game won 2
+   * Game lost 1
    * Continue playing (after win or loss)
    */
-  public boolean isGameOver() {
+  public boolean isPlayAgain() {
+    System.out.print("Would You Like To Play Again? (y/n) ");
+    String replay = scan.nextLine();
+    replay.toLowerCase();
+    if (replay.charAt(0) == 'y') {
+      return true;
+    }
+    return false;
+  } // isPlayAgain
 
-    return true;
-  }
+  // playAgain = 1
+  // gameLoop = 2
+  // gameOngoing = 3
+  public int getGameState() {
+    return 1;
+  } // getGameState
 
   /* Gets word encoded */
   public String getEncodedWord() {
     return this.encoded;
-  }
+  } // getEncodedWord
 
   /* Builds encoded word to show: "_ o _ d" */
   public void setEncodedWord(ArrayList<String> guesses) {
@@ -187,7 +199,7 @@ public class HangmanSettingsSelect {
         }
       }
     }
-  }
+  } // setEncodedWord
 
 
   /* Get user guess */
@@ -244,7 +256,7 @@ public class HangmanSettingsSelect {
       System.out.println("Invalid Input 5 " + e);
     }
     return correct;
-  }
+  } // getUserGuess
 
 
   /* Loops through `guesses` and returns a reading of what letters have already been guessed */
@@ -270,12 +282,12 @@ public class HangmanSettingsSelect {
     guessSummary += "]";
 
     System.out.println(guessSummary);
-  }
+  } // generateGuessSummary
 
   /* Method prints out the word being guessed, the strikes remaining, the number of correct guesses */
   public void readStatus(int correct) {
     System.out.println("Word To Guess: " + TextColor.Purple + this.word + TextColor.Reset);
     System.out.println("Strikes Remaining: " + this.strikes + TextColor.Reset);
     System.out.println("Letters Correct: " + correct + TextColor.Reset);
-  }
+  } // readStatus
 }
