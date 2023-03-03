@@ -382,3 +382,14 @@ public class HangmanSettingsSelect {
     System.out.println("Letters Correct: " + correct + TextColor.Reset);
   } // readStatus
 }
+
+
+
+
+
+
+
+
+
+
+
