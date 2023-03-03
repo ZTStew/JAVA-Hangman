@@ -1,6 +1,6 @@
 /*
-* Class to prompt user to select game settings including difficulty, word length, word, strikes
-*/
+ * Class to prompt user to select game settings including difficulty, word length, word, strikes
+ */
 
 import java.io.RandomAccessFile;
 import java.util.Random;
@@ -28,10 +28,24 @@ public class HangmanSettingsSelect {
 
 
   /* Difficulty */
+  /*
+   * Method: 'getDifficulty'
+   * Arguments: None
+   * Return: int difficulty
+   * 
+   * Description: Returns game difficulty
+   */
   public int getDifficulty () {
     return this.difficulty;
   }
 
+  /*
+   * Method: 'setDifficulty'
+   * Arguments: None
+   * Return: None
+   * 
+   * Description: Prompts user for game difficulty
+   */
   public void setDifficulty() {
     while (this.difficulty == 0) {
       try {
@@ -60,10 +74,24 @@ public class HangmanSettingsSelect {
 
 
   /* Word Length */
+  /*
+   * Method: 'getWordLength'
+   * Arguments: None
+   * Return: int wordLength
+   * 
+   * Description: Returns length of word being guessed
+   */
   public int getWordLength() {
     return this.wordLength;
   }
 
+  /*
+   * Method: 'setWordLength'
+   * Arguments: None
+   * Return: None
+   * 
+   * Description: Prompts user for word length
+   */
   public void setWordLength() {
     while (wordLength == 0) {
       try {
@@ -87,10 +115,24 @@ public class HangmanSettingsSelect {
 
 
   /* Selects the word being guessed */
+  /*
+   * Method: 'getWord'
+   * Arguments: None
+   * Return: String word
+   * 
+   * Description: Returns word being guessed
+   */
   public String getWord() {
     return word;
   }
 
+  /*
+   * Method: 'setWord'
+   * Arguments: None
+   * Return: None
+   * 
+   * Description: Gets a random word from file named after word length
+   */
   public void setWord() {
     try {
       // opens file
@@ -124,14 +166,35 @@ public class HangmanSettingsSelect {
 
 
   /* Strikes */
+  /*
+   * Method: 'getStrikes'
+   * Arguments: None
+   * Return: int strikes
+   * 
+   * Description: Returns number of strikes
+   */
   public int getStrikes() {
     return this.strikes;
   }
 
+  /*
+   * Method: 'updateStrikes'
+   * Arguments: None
+   * Return: None
+   * 
+   * Description: reduces the number of strikes avalible by 1
+   */
   public void updateStrikes() {
     this.strikes--;
   }
 
+  /*
+   * Method: 'setGameStrikes'
+   * Arguments: None
+   * Return: None
+   * 
+   * Description: Sets number of stikes based on the selected difficulty
+   */
   private void setGameStrikes() {
     if (this.getDifficulty() == 1) {
       this.strikes = 10;
@@ -144,11 +207,11 @@ public class HangmanSettingsSelect {
 
 
   /*
-   * Contains checks to determine if the game is in 1 of 3 states:
-   * Game still going 3
-   * Game won 2
-   * Game lost 1
-   * Continue playing (after win or loss)
+   * Method: 'isPlayAgain'
+   * Arguments: None
+   * Return: boolean playAgain
+   * 
+   * Description: Promts user if they want to play another round of game
    */
   public boolean isPlayAgain() {
     System.out.print("Would You Like To Play Again? (y/n) ");
@@ -160,19 +223,27 @@ public class HangmanSettingsSelect {
     return false;
   } // isPlayAgain
 
-  // playAgain = 1
-  // gameLoop = 2
-  // gameOngoing = 3
-  public int getGameState() {
-    return 1;
-  } // getGameState
 
   /* Gets word encoded */
+  /*
+   * Method: 'getEncodedWord'
+   * Arguments: None
+   * Return: String encoded
+   * 
+   * Description: Returns to user the encoded word
+   */
   public String getEncodedWord() {
     return this.encoded;
   } // getEncodedWord
 
   /* Builds encoded word to show: "_ o _ d" */
+  /*
+   * Method: 'setEncodedWord'
+   * Arguments: ArrayList<String> guesses
+   * Return: None
+   * 
+   * Description: Encodes the word with the letter representing a guessed letter and an '_' representing an unguessed letter
+   */
   public void setEncodedWord(ArrayList<String> guesses) {
     // resets encoded
     this.encoded = "";
@@ -202,7 +273,13 @@ public class HangmanSettingsSelect {
   } // setEncodedWord
 
 
-  /* Get user guess */
+  /*
+   * Method: 'getUserGuess'
+   * Arguments: ArrayList<String> guesses, int correct
+   * Return: int correct
+   * 
+   * Description: Prompts user for a guess and checks if the guess is in the word
+   */
   public int getUserGuess(ArrayList<String> guesses, int correct) {
     try {
       String guess = "";
@@ -260,6 +337,13 @@ public class HangmanSettingsSelect {
 
 
   /* Loops through `guesses` and returns a reading of what letters have already been guessed */
+  /*
+   * Method: 'generateGuessSummary'
+   * Arguments: ArrayList<String> guesses
+   * Return: None
+   * 
+   * Description: Looks through list of guesses and generates a summary of already made guesses
+   */
   public void generateGuessSummary(ArrayList<String> guesses) {
     String guessSummary = "Current Gueses: [";
 
@@ -285,6 +369,13 @@ public class HangmanSettingsSelect {
   } // generateGuessSummary
 
   /* Method prints out the word being guessed, the strikes remaining, the number of correct guesses */
+  /*
+   * Method: 'readStatus'
+   * Arguments: int correct
+   * Return: None
+   * 
+   * Description: Prints the word being guessed, the number of remaining strikes, and the number of correctly guessed values
+   */
   public void readStatus(int correct) {
     System.out.println("Word To Guess: " + TextColor.Purple + this.word + TextColor.Reset);
     System.out.println("Strikes Remaining: " + this.strikes + TextColor.Reset);
